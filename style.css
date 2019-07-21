@@ -1,0 +1,14 @@
+img{
+    max-width:100%;
+    max-height:40vh;
+}
+#sql{
+    width:100%;
+}
+#image_list{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+}
+.tags{
+    font-size:.75rem;
+}
