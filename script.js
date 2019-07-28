@@ -57,5 +57,8 @@ function add_tag(e){
         fetch_images();
     };
     const tag=document.getElementById("tag").value;
+    if(tag==""){
+        return;
+    }
     xhr.send(JSON.stringify({id:e.target.dataset.id,tag:tag}));
 }
