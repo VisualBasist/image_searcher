@@ -42,9 +42,20 @@ function fetch_images(){
         </a>
     </div>
     <div class="tags">${image.tags.join(",")}</div>
+    <button data-id="${image.id}" onclick="add_tag(event)">タグ追加</button>
 </div>`);
         }
     };
-    let start_date=new Date();
+    const start_date=new Date();
     xhr.send();
+}
+
+function add_tag(e){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", `http://localhost:${SERVER_PORT}/add_tag`);
+    xhr.onload = ()=>{
+        fetch_images();
+    };
+    const tag=document.getElementById("tag").value;
+    xhr.send(JSON.stringify({id:e.target.dataset.id,tag:tag}));
 }

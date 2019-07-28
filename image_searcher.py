@@ -20,7 +20,7 @@ class WebServer(BaseHTTPRequestHandler):
     def fetch_images(self,sql_query):
         try:
             with db_connection.cursor() as cur:
-                cur.execute(f"select distinct on (path) url,path,name,tags,(select name from authors where authors.author_id=images.author_id) as author_name from images,unnest(tags) as tag where {sql_query}")
+                cur.execute(f"select distinct on (path) id,url,path,name,tags,(select name from authors where authors.author_id=images.author_id) as author_name from images,unnest(tags) as tag where {sql_query}")
                 self.send_response(HTTPStatus.OK)
                 self.send_header("Content-Type","application/json; charset=UTF-8")
                 self.send_header("Access-Control-Allow-Origin","*")
@@ -35,6 +35,13 @@ class WebServer(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(str(e)).encode())
             
+    def add_tag(self):
+        taginfo=json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        with db_connection.cursor() as cur:
+            cur.execute("update images set tags=array_append(tags,%s) where id=%s",(taginfo["tag"],taginfo["id"]) )
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Access-Control-Allow-Origin","*")
+        self.end_headers()
 
     def do_GET(self):
         parsed_url=urllib.parse.urlparse(self.path)
@@ -47,6 +54,18 @@ class WebServer(BaseHTTPRequestHandler):
         
         self.send_error(HTTPStatus.BAD_REQUEST)
         self.end_headers()
+
+    def do_POST(self):
+        parsed_url=urllib.parse.urlparse(self.path)
+        path=urllib.parse.unquote_plus(parsed_url.path)
+
+        if path=="/add_tag":
+            self.add_tag()
+            return
+        
+        self.send_error(HTTPStatus.BAD_REQUEST)
+        self.end_headers()
+
 
 def run(server_class=HTTPServer, handler_class=WebServer):
     httpd = server_class((SERVER_LISTEN_ADDRESS,SERVER_PORT), handler_class)
