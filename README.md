@@ -1,6 +1,6 @@
 # image_searcher
 - ブラウザ上で使うよ
-- 画像にタグ付けできるようにするつもり
+- 画像にタグ付けできるよ
 - [🐘PostgreSQL](https://www.postgresql.org/)に検索してもらいます
 
 
