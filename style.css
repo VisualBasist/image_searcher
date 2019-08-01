@@ -5,6 +5,11 @@ img{
 input{
     width:100%;
 }
+#tag{
+    position:sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
 #image_list{
     display:grid;
     grid-template-columns:repeat(5, 1fr);
