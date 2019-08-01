@@ -9,6 +9,15 @@
 - [🐘PostgreSQL](https://www.postgresql.org/)
 - [🐍-🐘psycopg2](http://initd.org/psycopg/)
 
+# Setup Database データベースの準備
+1. データベースを作ります
+    ```bash
+    $ createdb -U postgres imagedb
+    ```
+2. テーブルとかを作ります
+    ```bash
+    $ psql -U postgres imagedb < imagedb_dump.sql
+    ```
 
 # Usage 使い方
 
