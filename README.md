@@ -10,19 +10,27 @@
 - [🐍-🐘psycopg2](http://initd.org/psycopg/)
 
 # Setup Database データベースの準備
-1. データベースを作ります
+1. データベース接続用のユーザーを作成します。パスワードは`imageuser`で
+    ```bash
+    $ createuser -U postgres imageuser
+    ```
+2. データベースを作ります
     ```bash
     $ createdb -U postgres imagedb
     ```
-2. テーブルとかを作ります
+3. テーブルとかを作ります
     ```bash
     $ psql -U postgres imagedb < imagedb_dump.sql
     ```
 
 # Usage 使い方
 
-1. Webサーバーを起動します
+1. 画像を登録します(まだこのツールは未完成)
+    ```bash
+    $ python3 importer.py 登録したいフォルダのパス
+    ```
+2. Webサーバーを起動します
     ```bash
     $ python3 image_searcher.py
     ```
-2. `index.html`を開きます
+3. `index.html`を開きます
