@@ -18,7 +18,7 @@ with db_connection.cursor() as cur:
                 cur.execute("insert into images (name,path) values (%s,%s)",
                 (
                     image_f.name,
-                    image_f.resolve(),
+                    str(image_f.resolve()),
                 ))
             except Exception as e:
                 print(e)
