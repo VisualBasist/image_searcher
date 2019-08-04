@@ -20,7 +20,7 @@ class WebServer(BaseHTTPRequestHandler):
     def fetch_images(self,sql_query):
         try:
             with db_connection.cursor() as cur:
-                cur.execute(f"select distinct on (path) id,url,path,name,tags,(select name from authors where authors.author_id=images.author_id) as author_name from images,unnest(tags) as tag where {sql_query}")
+                cur.execute(f"select distinct on (path) id,url,path,name,tags,(select name from authors where authors.author_id=images.author_id) as author_name from images,unnest(case when tags <> '{{}}' then tags else '{{null}}' end) as tag where {sql_query}")
                 self.send_response(HTTPStatus.OK)
                 self.send_header("Content-Type","application/json; charset=UTF-8")
                 self.send_header("Access-Control-Allow-Origin","*")
