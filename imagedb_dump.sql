@@ -67,7 +67,7 @@ CREATE TABLE public.images (
     tags character varying(128)[] DEFAULT '{}'::character varying[] NOT NULL,
     author_id integer,
     created_timestamp timestamp with time zone,
-    description text,
+    description text
 );
 
 
