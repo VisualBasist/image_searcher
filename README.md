@@ -18,14 +18,14 @@
     ```bash
     $ createdb -U postgres imagedb
     ```
-3. テーブルとかを作ります
+3. データベースのテーブルや権限を設定します
     ```bash
     $ psql -U postgres imagedb < imagedb_dump.sql
     ```
 
 # Usage 使い方
 
-1. 画像を登録します(まだこのツールは未完成)
+1. 画像を登録します(このツールは未完成)
     ```bash
     $ python3 importer.py 登録したいフォルダのパス
     ```
