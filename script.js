@@ -30,10 +30,10 @@ function fetch_images(){
         for(const image of xhr.response.slice(0,IMAGE_LIMIT_COUNT)){
             image_list.insertAdjacentHTML("beforeend",
 `<div>
-    <div>${image.author_name}</div>
+    <div class="author_name">${image.author_name}</div>
     <div>
         <a href="${image.url}" target="_blank">
-            <div>${image.name}</div>
+            <div class="image_name">${image.name}</div>
         </a>
     </div>
     <div>
