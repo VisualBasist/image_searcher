@@ -10,9 +10,9 @@ input{
     position: -webkit-sticky;
     top: 0;
 }
-#image_list{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
+#image_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
 }
 .tags{
     font-size:.75rem;
