@@ -17,3 +17,11 @@ input{
 .tags{
     font-size:.75rem;
 }
+button.tag{
+    padding:0;
+    margin:0 1px;
+    border:0;
+}
+button.tag:hover {
+    background: #9999FF;
+}

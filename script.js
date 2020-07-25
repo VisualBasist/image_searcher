@@ -41,7 +41,7 @@ function fetch_images(){
             <img src="file:///${image.path}">
         </a>
     </div>
-    <div class="tags">${image.tags.join(",")}</div>
+    <div class="tags">${image.tags.map(t=>`<button class="tag">${t}</button>`).join("")}</div>
     <button data-id="${image.id}" onclick="add_tag(event)">タグ追加</button>
 </div>`);
         }
