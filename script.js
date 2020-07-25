@@ -1,4 +1,4 @@
-const IMAGE_LIMIT_COUNT=200;
+const IMAGE_LIMIT_COUNT=500;
 const SERVER_PORT=55000;
 
 function is_Enter(e){
